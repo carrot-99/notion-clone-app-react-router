@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from './components/Home'
 import Login from './components/Login'
-import { GiAlienSkull } from "react-icons/gi";
+import MemoIcon from "./images/memo.png"
+import AppLayout from './components/layout/AppLayout';
+import Memo from './components/Memo';
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -25,19 +27,26 @@ function App() {
 
     return (
         <BrowserRouter>
+            {/* <Split className="flex" > */}
             <div className='App'>
-                <Link to="/">Home</Link>
+                {/* <Link to="/">Home</Link>
                 <br />
                 <Link to="/login">Login</Link>
-                <br />
+            br /> */}
 
+                {/* <h1><GiAlienSkull /></h1> */}
+                <header>
+                    <img src={MemoIcon} />
+                    <h1>App Title</h1>
+                </header>
                 <Routes>
-                    {/* exactをつけたら完全一致になる */}
-                    <Route exact path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<AppLayout />}>
+                        {/* exactをつけたら完全一致になる */}
+                        <Route exact path="/" element={<Home />} />
+                        <Route path="/memo" element={<Memo />} />
+                        <Route path="/login" element={<Login />} />
+                    </Route>
                 </Routes>
-                <h1><GiAlienSkull /></h1>
-                <h1>Notion App 2</h1>
                 {products.map((product) => {
                     return (
                         <div key={product._id}>
@@ -47,6 +56,7 @@ function App() {
                     );
                 })}
             </div>
+            {/* </Split> */}
         </BrowserRouter>
     );
 }
