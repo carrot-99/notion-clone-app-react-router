@@ -1,12 +1,14 @@
 import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Home from './components/Home'
-import Login from './components/Login'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from './components/pages/Home'
+import Login from './components/pages/Login'
+import Register from './components/pages/Register'
 import MemoIcon from "./images/memo.png"
 import AppLayout from './components/layout/AppLayout';
-import Memo from './components/Memo';
+import Memo from './components/pages/Memo';
+import AuthLayout from './components/layout/AuthLayout';
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -39,6 +41,12 @@ function App() {
                     <img src={MemoIcon} />
                     <h1>App Title</h1>
                 </header>
+                <Routes>
+                    <Route path="/" element={<AuthLayout />}>
+                        <Route path='login' element={<Login />} />
+                        <Route path='register' element={<Register />} />
+                    </Route>
+                </Routes>
                 <Routes>
                     <Route path="/" element={<AppLayout />}>
                         {/* exactをつけたら完全一致になる */}
