@@ -2,8 +2,6 @@ import { SidebarData } from './SidebarData'
 import SidebarIcon from "./SidebarIcon"
 import React from 'react';
 import Sidebar from 'react-sidebar';
-import {BsReverseLayoutTextSidebarReverse} from "react-icons/bs"
-import SidebarImg from "../images/sidebar.png"
 
 class Menu extends React.Component {
     constructor(props) {
@@ -34,7 +32,7 @@ class Menu extends React.Component {
                         return (
                             <li 
                                 key={key} 
-                                id={window.location.pathname == value.link ? "active" : ""}
+                                id={window.location.pathname === value.link ? "active" : ""}
                                 className="row" 
                                 onClick={()=>{
                                     window.location.pathname = value.link;
