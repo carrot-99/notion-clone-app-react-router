@@ -2,13 +2,13 @@ import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from './components/pages/Home'
-import Login from './components/pages/Login'
-import Register from './components/pages/Register'
 import MemoIcon from "./images/memo.png"
 import AppLayout from './components/layout/AppLayout';
-import Memo from './components/pages/Memo';
 import AuthLayout from './components/layout/AuthLayout';
+import Home from './components/pages/Home'
+import Register from './components/pages/Register'
+import Login from './components/pages/Login'
+import Memo from './components/pages/Memo';
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ function App() {
         async function fetchProducts() {
             try {
                 const { data } = await axios.get(
-                    'http://localhost:5500/api/products'
+                    'http://localhost:5050/api/products'
                 );
                 setProducts(data);
             } catch (err) {
@@ -51,8 +51,7 @@ function App() {
                     <Route path="/" element={<AppLayout />}>
                         {/* exactをつけたら完全一致になる */}
                         <Route exact path="/" element={<Home />} />
-                        <Route path="/memo" element={<Memo />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="memo" element={<Memo />} />
                     </Route>
                 </Routes>
                 {products.map((product) => {
@@ -64,6 +63,7 @@ function App() {
                     );
                 })}
             </div>
+
             {/* </Split> */}
         </BrowserRouter>
     );
