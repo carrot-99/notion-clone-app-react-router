@@ -1,9 +1,154 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import authApi from '../../api/authApi';
+
 
 const Register = () => {
-  return (
-    <div>Register</div>
-  )
+    const navigate = useNavigate();
+    const [userName, setUserName] = useState("");
+    const [addUserName, setAddUserName] = useState("");
+    // const [usernameErrText, setUsernameErrText] = useState("");
+    // const [passwordErrText, setPasswordErrText] = useState("");
+    // const [confirmErrText, setConfirmErrText] = useState("");
+    // const [loading, setLoading] = useState(false);
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     setUsernameErrText("");
+    //     setPasswordErrText("");
+    //     setConfirmErrText("");
+
+    //     // 入力欄の文字列を取得
+    //     const data = new FormData(e.target);
+    //     // 空白を取り除くために.trim()
+    //     const username = data.get("username").trim();
+    //     const password = data.get("password").trim();
+    //     const confirmPassword = data.get("confirmPassword").trim();
+    //     console.log(username);
+    //     console.log(password);
+    //     console.log(confirmPassword);
+
+    //     let error = false;
+
+    //     if(username === "") {
+    //         error = true;
+    //         setUsernameErrText("名前を入力してください");
+    //     }
+    //     if(password === "") {
+    //         error = true;
+    //         setPasswordErrText("パスワードを入力してください");
+    //     }
+    //     if(confirmPassword === "") {
+    //         error = true;
+    //         setConfirmErrText("確認用パスワードを入力してください");
+    //     }
+    //     if(password !== confirmPassword) {
+    //         error = true;
+    //         setConfirmErrText("パスワードと確認用パスワードが異なります");
+    //     }
+    //     if (error) return;
+    //     setLoading(true);
+    //     // 新規登録APIを叩く
+    //     try {
+    //         const res = await authApi.register({
+    //             username,
+    //             password,
+    //             confirmPassword,
+    //         });
+    //         setLoading(false);
+    //         localStorage.setItem("token", res.token);
+    //         console.log("新規登録に成功しました");
+    //         navigate("/");
+    //     } catch (err) {
+    //         console.log(err);
+    //         const errors = err.data.errors;
+    //         console.log(errors);
+    //         errors.forEach((err) => {
+    //             if(err.param === "username") {
+    //                 setUsernameErrText(err.msg);
+    //             }
+    //             if(err.param === "password") {
+    //                 setPasswordErrText(err.msg);
+    //             }
+    //             if(err.param === "confirmPassword") {
+    //                 setConfirmErrText(err.msg);
+    //             }
+    //         });
+    //         setLoading(false);
+    //     }
+    // }
+
+    const onClickAddUserName = () => {
+        setAddUserName(userName);
+        setUserName("");
+    }
+
+    return (
+        <>
+            {/* <div component="form" onSubmit={handleSubmit} noValidate> */}
+                {/* <div 
+                    fullWidth 
+                    id="username" 
+                    label="お名前" 
+                    margin="normal" 
+                    name="username"
+                    required
+                    helperText={usernameErrText}
+                    error={usernameErrText !== ""}
+                    disabled={loading}
+                /> */}
+                <div>
+                    <input 
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                    {/* <input type="text"/> */}
+                    <button onClick={onClickAddUserName}>追加</button>
+                    <p>{userName}</p>
+                    <p>{addUserName}</p>
+                </div>
+                {/* <div 
+                    fullWidth 
+                    id="password" 
+                    label="パスワード" 
+                    margin="normal" 
+                    name="password"
+                    type="password"
+                    required
+                    helperText={passwordErrText}
+                    error={passwordErrText !== ""}
+                    disabled={loading}
+                /> */}
+
+                {/* <div 
+                    fullWidth 
+                    id="confirmPassword" 
+                    label="確認用パスワード" 
+                    margin="normal" 
+                    name="confirmPassword"
+                    type="password"
+                    required
+                    helperText={confirmErrText}
+                    error={confirmErrText !== ""}
+                    disabled={loading}
+                /> */}
+
+                {/* <button 
+                    sx={{ mt:3, mb: 2 }} 
+                    fullWidth
+                    type="submit"
+                    loading={loading}
+                    color="primary"
+                    variant='outlined'
+                >
+                    アカウント作成
+                </button> */}
+            {/* </div> */}
+            <button onClick={() => navigate("/login")}> 
+                ログイン
+            </button>
+        </> 
+    )
 }
 
 export default Register

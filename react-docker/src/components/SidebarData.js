@@ -1,6 +1,7 @@
 import React from 'react'
 import { AiFillHome, AiFillFile } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 
 export const SidebarData = [
     {
@@ -17,5 +18,10 @@ export const SidebarData = [
         title: "Login",
         icon:  <BiLogIn />,
         link:  "/login",
+    },
+    {
+        title: "Register",
+        icon:  <BsFillPersonPlusFill />,
+        link:  "/register",
     },
 ]
